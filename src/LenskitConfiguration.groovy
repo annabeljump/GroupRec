@@ -4,22 +4,6 @@
  * @author Lenskit - testing "getting started" configuration
  */
 
-LenskitConfiguration config = new LenskitConfiguration();
-
-//config.bind(ItemScorer.class).to(ItemItemScorer.class);
-
-// personalized mean rating used as the baseline/fallback predictor.
-// 2-step process:
-// First, use the user mean rating as the baseline scorer
-//config.bind(BaselineScorer.class, ItemScorer.class)
-  //      .to(UserMeanItemScorer.class);
-// Second, use the item mean rating as the base for user means
-//config.bind(UserMeanBaseline.class, ItemScorer.class)
-  //      .to(ItemMeanRatingItemScorer.class);
-// and normalize ratings by baseline prior to computing similarities
-//config.bind(UserVectorNormalizer.class)
-//        .to(BaselineSubtractingUserVectorNormalizer.class);
-
 //I actually want user-user CF:
 
 config.bind(ItemScorer.class).to(UserUserItemScorer).class;
@@ -38,3 +22,21 @@ config.set(NeighborhoodSize.class).to(30);
 //bind the data source
 //config.bind(EventDAO.class).to(new SimpleFileRatingDAO(new File(""), ","));
 config.bind(EventDAO.class).to(new SimpleFileRatingDAO(new csvFile("~/IdeaProject/u.data"), "/t"));
+
+//Keeping all old code for reference, studying LensKit Configuration files.
+
+// LenskitConfiguration config = new LenskitConfiguration();
+
+//config.bind(ItemScorer.class).to(ItemItemScorer.class);
+
+// personalized mean rating used as the baseline/fallback predictor.
+// 2-step process:
+// First, use the user mean rating as the baseline scorer
+//config.bind(BaselineScorer.class, ItemScorer.class)
+//      .to(UserMeanItemScorer.class);
+// Second, use the item mean rating as the base for user means
+//config.bind(UserMeanBaseline.class, ItemScorer.class)
+//      .to(ItemMeanRatingItemScorer.class);
+// and normalize ratings by baseline prior to computing similarities
+//config.bind(UserVectorNormalizer.class)
+//        .to(BaselineSubtractingUserVectorNormalizer.class);
