@@ -31,7 +31,7 @@ within (UserVectorNormalizer) {
     // for normalization, just center on user means
     config.bind(VectorNormalizer.class).to(MeanCenteringVectorNormalizer.class);
 }
-config.set(NeighborhoodSize).to(30);
+config.set(NeighborhoodSize.class).to(30);
 
 
 
