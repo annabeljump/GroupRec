@@ -4,24 +4,29 @@
  * @author Lenskit - testing "getting started" configuration
  */
 
-//I actually want user-user CF:
+//I want to configure user-user CF:
 
-config.bind(ItemScorer.class).to(UserUserItemScorer).class;
+bind ItemScorer to UserUserItemScorer
+
 // use item-user mean when user-user fails
-config.bind(BaselineScorer.class, ItemScorer.class).to(UserMeanItemScorer.class);
-config.bind(UserMeanBaseline.class, ItemScorer.class).to(ItemMeanRatingItemScorer.class);
+bind (BaselineScorer, ItemScorer) to UserMeanItemScorer
+bind (UserMeanBaseline, ItemScorer) to ItemMeanRatingItemScorer
+
 // normalize by subtracting the user's mean rating
 within (UserVectorNormalizer) {
-    // for normalization, just center on user means
-    config.bind(VectorNormalizer.class).to(MeanCenteringVectorNormalizer.class);
+    // for normalization, center on user means
+    bind VectorNormalizer to MeanCenteringVectorNormalizer
 }
-config.set(NeighborhoodSize.class).to(30);
 
 
+//Initial neighbourhood size set to 30
+set NeighborhoodSize to 30
 
 //bind the data source
 //config.bind(EventDAO.class).to(new SimpleFileRatingDAO(new File(""), ","));
 config.bind(EventDAO.class).to(new SimpleFileRatingDAO(new csvFile("~/IdeaProject/u.data"), "/t"));
+
+
 
 //Keeping all old code for reference, studying LensKit Configuration files.
 
