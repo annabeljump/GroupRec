@@ -17,7 +17,7 @@ public class Recommender implements Runnable {
         }
     }
 
-    private Path dataFile = Paths.get("");
+    private Path dataFile = Paths.get("~/IdeaProjects/");
     private List<Long> users;
 
     public Recommender(String[] args) {
